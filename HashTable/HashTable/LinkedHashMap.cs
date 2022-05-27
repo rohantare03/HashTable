@@ -60,5 +60,20 @@ namespace HashTable
             }
             else myMapNode.value = value;
         }
+        public void Remove(K key)
+        {
+            //find the index for the word
+            int index = this.GetBucketIndex(key);
+            LinkedList<K, V> linkedList = BucketList[index];
+            //check linkedList is null or not
+            if (linkedList != null)
+            {
+                MyMapNode<K, V> myMapNode = linkedList.Search(key);
+                if (myMapNode != null)
+                {
+                    linkedList.DeleteNode(myMapNode);
+                }
+            }
+        }
     }
 }
