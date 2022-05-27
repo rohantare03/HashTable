@@ -8,17 +8,18 @@ namespace HashTable
 {
     public class LinkedList<K, V> where K : IComparable
     {
-        //linkedlist node created with key-value pair
+
         public MyMapNode<K, V> head;
         public MyMapNode<K, V> tail;
+
         public LinkedList()
         {
-            this.head = null;
-            this.tail = null;
+            head = null;
+            tail = null;
         }
         public MyMapNode<K, V> Search(K key)
         {
-            //head assign as temp
+            //Head will assign as temp
             MyMapNode<K, V> temp = head;
             while (temp != null)
             {
@@ -30,15 +31,15 @@ namespace HashTable
         }
         public void Append(MyMapNode<K, V> node)
         {
-            //check node present or not
-            if (this.head == null && this.tail == null)
+            //Check node is present or not
+            if (head == null && tail == null)
             {
                 head = node;
                 tail = node;
             }
             else
             {
-                //if present then node added from the end
+                //If present then node added from the End
                 tail.next = node;
                 tail = node;
             }
@@ -47,13 +48,14 @@ namespace HashTable
         {
             return head == null && tail == null;
         }
+
         public MyMapNode<K, V> Pop()
         {
-            //temp assign to the first node
+            //Temp assign to the first node
             MyMapNode<K, V> temp = head;
             if (head != null)
             {
-                //moving head to next node and remove first node
+                //Moving head to next Node and remove first node
                 head = head.next;
             }
             return temp;
@@ -63,13 +65,14 @@ namespace HashTable
             MyMapNode<K, V> tailTemp = tail;
             if (!IsEmpty())
             {
-                //head is assigned as temp
+                //Head is assign as temp
                 MyMapNode<K, V> temp = head;
-                while (temp.next != null)
+                while (temp.next != tail)
                 {
-                    //traversing the tail
+                    //Traversing till tail
                     temp = temp.next;
                 }
+
                 temp.next = null;
                 tail = temp;
             }
@@ -77,16 +80,17 @@ namespace HashTable
         }
         public bool DeleteNode(MyMapNode<K, V> DeleteNode)
         {
+
             MyMapNode<K, V> temp = head;
             if (!IsEmpty())
             {
-                //if removing node is first
+                //If removing node is first
                 if (DeleteNode.key.Equals(head.key))
                 {
                     Pop();
                     return true;
                 }
-                //if removing node s last
+                //If removing node is last
                 if (DeleteNode.key.Equals(tail.key))
                 {
                     PopLast();
@@ -94,7 +98,7 @@ namespace HashTable
                 }
                 while (temp != null)
                 {
-                    //if removing node rahter than first or last
+                    //If removing node rather than first and last
                     if (temp.next != null && temp.next.key.Equals(DeleteNode.key))
                     {
                         temp.next = DeleteNode.next;
